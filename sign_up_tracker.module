@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Contains sign_up_tracker.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function sign_up_tracker_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the sign_up_tracker module.
+    case 'help.page.sign_up_tracker':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Sign Up Tracker') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function sign_up_tracker_theme() {
+  return [
+    'sign_up_tracker' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ *
+ * Implements hook_entity_insert().
+ * 
+ */
+function sign_up_tracker_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  $entityBundle = $entity->bundle();
+  //Track user sign up activity
+  if ($entityBundle == 'user') {
+    $sign_up_tracker = \Drupal::service('sign_up_tracker.helper')->logSignUp($entity);
+  }
+}

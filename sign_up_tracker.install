@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the activity tracking module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function sign_up_schema() {
+  $schema['sign_up_tracker'] = [
+    'description' => 'Create table used to store data of sign up of users',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'description' => 'Unique ID for this record.',
+      ],
+      'uid' => [
+        'description' => 'uid of user',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'ip' => [
+        'description' => 'Remote user IP address',
+        'type' => 'varchar',
+        'length' => 255,
+      ],
+      'user_agent' => [
+        'description' => 'user agent of browser or mobile app',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => "Timestamp for the record insert.",
+      ],
+    ],
+    'indexes' => [
+      'sign_up_tracker_uid' => ['uid'],
+      'sign_up_tracker_created_timestamp' => ['created'],
+    ],
+    'foreign keys' => [
+      'uid' => [
+        'table' => 'users',
+        'columns' => ['uid' => 'uid']
+      ]
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}

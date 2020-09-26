@@ -1,0 +1,7 @@
+services:
+  logger.channel.sign_up_tracker:
+    parent: logger.channel_base
+    arguments: ['sign_up_tracker']
+  sign_up_tracker.helper:
+    class: Drupal\sign_up_tracker\SignUpTrackerHelper
+    arguments: ['@database', '@request_stack', '@config.factory']

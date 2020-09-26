@@ -1,0 +1,13 @@
+{
+    "name": "sign_up_tracker",
+    "type": "drupal-module",
+    "description": "Sign Up Tracker",
+    "keywords": [
+    ],
+    "homepage": "https://www.drupal.org/project/sign_up_tracker",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/sign_up_tracker",
+        "source": "http://cgit.drupalcode.org/sign_up_tracker",
+    },
+}

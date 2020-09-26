@@ -1,0 +1,7 @@
+name: 'Sign Up Tracker'
+type: module
+description: 'Allow system to log data into a custom table when an account is added.'
+dependencies:
+  - drupal:user
+core: 8.x
+package: 'Custom'
